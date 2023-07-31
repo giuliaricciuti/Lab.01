@@ -19,6 +19,13 @@ public class FXMLController {
 
     @FXML
     private URL location;
+    
+
+    @FXML
+    private TextArea txtTime;
+    
+    @FXML
+    private Button btnCancella;
 
     @FXML
     private Button btnInserisci;
@@ -34,14 +41,25 @@ public class FXMLController {
 
     @FXML
     void doInsert(ActionEvent event) {
-
+    	String s = (String) txtParola.getText();
+    	elenco.addParola(s);
+    	txtParola.clear();
+    	txtResult.appendText(elenco.getElenco(s)+"\n");	
+    }
+    
+    @FXML
+    void doCancella(ActionEvent event) {
+    	String s = txtResult.getSelectedText();
+    	elenco.cancella(s);
     }
 
     @FXML
     void doReset(ActionEvent event) {
-
+    	elenco.reset();
+    	txtResult.clear();
     }
 
+ 
     @FXML
     void initialize() {
         assert btnInserisci != null : "fx:id=\"btnInserisci\" was not injected: check your FXML file 'Scene.fxml'.";
